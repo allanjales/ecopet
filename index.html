@@ -1,0 +1,253 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Eco Pet</title>
+<link rel="shortchut icon" href="icones/favicon.png" type="image/x-png"/>
+<link rel="apple-touch-icon" href="icones/favicon.png">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400" rel="stylesheet">
+<link href="cssjs/estilo.css" rel="stylesheet" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="cssjs/menu.js"></script>
+</head>
+
+<body>
+<header id="inicio">
+	<img src="icones/logo.svg" class="logo centro" alt="Logo Eco Pet">
+</header>
+<nav class="centro">
+	<a href="#inicio">Topo</a>
+	<a href="#sobre">Sobre</a>
+	<a href="#locais">Locais</a>
+	<a href="#contato">Contatos</a>
+    <div class="dropdown-close" onclick="myFunction();">&times;</div>
+</nav>
+<div class="banner"></div>
+<main class="meio">
+	<h1 id="sobre" class="grande centro" style="margin-top: 0;">Sobre</h1>
+	<p class="pequeno texto">A Eco Pet é um projeto ecológico iniciado pela I The Best com objetivo de reclicar e beneficiar as pessoas que a ajudam. Nosso objetivo é atuar de forma específica no segmento de resíduos urbanos e alcançar o maior número de multiplicadores conscientes, gerando emprego e renda para as cidades.
+    
+    Através desses sistemas, a Eco Pet visa proporcionar a população o melhor e mais completo sistema de resíduos do Brasil.
+    </p>
+	<h1 id="locais" class="grande centro">Locais de Coleta</h1>
+	<div id="mapa"></div>
+	<h1 id="contato" class="grande centro">Contato</h1>
+</main>
+<form class="meio" method="post">
+    <div class="divisao">
+        <div class="lado">
+            <label for="nome">Seu nome</label>
+            <input id="nome" type="text" name="nome">
+            <label for="titulo">Assunto</label>
+            <input id="titulo" type="text" name="titulo">
+            <label for="email">Seu e-mail</label>
+            <input id="email" type="text" name="email">
+        </div>
+        <div class="lado">
+            <label for="mensagem">Sua mensagem</label>
+            <textarea id="mensagem" type="text" name="mensagem"></textarea>
+        </div>
+    </div>
+    <input type="submit" value="Enviar" disabled>
+</form>
+</body>
+</html>
+<!-- JQuery -->
+<script>
+	$('a[href^="#"]').on('click', function(event) {
+
+		var target = $(this.getAttribute('href'));
+
+		if( target.length ) {
+			event.preventDefault();
+			$('html, body').stop().animate({
+				scrollTop: (target.offset().top) - 60 //Subtrair a altura do menu fixes
+			}, 400);
+		}
+	});
+</script>
+
+<!-- Google Maps API -->
+
+<script>
+function initMap() {
+var map = new google.maps.Map(document.getElementById('mapa'), {
+  center: {lat: -37.024, lng: 160.887},
+  zoom: 4
+});
+var infoWindow = new google.maps.InfoWindow({map: map});
+
+// Try HTML5 geolocation.
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(function(position) {
+	var pos = {
+	  lat: position.coords.latitude,
+	  lng: position.coords.longitude
+	};
+
+	infoWindow.setPosition(pos);
+	infoWindow.setContent('Você está aqui');
+	map.setCenter(pos);
+  }, function() {
+	handleLocationError(true, infoWindow, map.getCenter());
+  });
+} else {
+  // Browser doesn't support Geolocation
+  handleLocationError(false, infoWindow, map.getCenter());
+}
+}
+
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+infoWindow.setPosition(pos);
+infoWindow.setContent(browserHasGeolocation ?
+					  'Erro: não foi possível achar sua localização :(' :
+					  'Erro: seu navegador não suporta geolocalização.');
+}
+</script>
+
+
+
+<script>
+
+function initMap() {
+
+var map = new google.maps.Map(document.getElementById('mapa'), {
+  zoom: 11,
+  center: {lat: -22.827751, lng: -43.082683}
+});
+
+// Create an array of alphabetical characters used to label the markers.
+var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+// Add some markers to the map.
+// Note: The code uses the JavaScript Array.prototype.map() method to
+// create an array of markers based on a given "locations" array.
+// The map() method here has nothing to do with the Google Maps API.
+var markers = locations.map(function(location, i) {
+  return new google.maps.Marker({
+	position: location,
+	label: labels[i % labels.length]
+  });
+});
+
+// Add a marker clusterer to manage the markers.
+var markerCluster = new MarkerClusterer(map, markers,
+	{imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+}
+var locations = [
+{lat: -22.832862, lng: -43.084714},
+{lat: -22.790978, lng: -43.003565},
+{lat: -22.822015, lng: -43.050048},
+{lat: -22.858538, lng: -42.923393},
+{lat: -22.794503, lng: -43.033971},
+{lat: -22.797959, lng: -42.990869},
+{lat: -22.822015, lng: -43.050048},
+{lat: -22.803178, lng: -43.022371},
+{lat: -22.858566, lng: -43.030197},
+{lat: -22.825957, lng: -42.996165},
+{lat: -22.818348, lng: -42.922395},
+{lat: -22.897229, lng: -43.220236},
+{lat: -22.849996, lng: -43.286238},
+{lat: -22.727083, lng: -43.519013},
+{lat: -22.774906, lng: -43.054628},
+{lat: -22.820172, lng: -43.005463},
+{lat: -22.880585, lng: -42.982683},
+{lat: -22.846430, lng: -43.014512},
+{lat: -22.774420, lng: -43.022875},
+{lat: -22.827327, lng: -43.017407},
+{lat: -22.823181, lng: -43.025323},
+{lat: -22.853782, lng: -43.015921},
+{lat: -22.783315, lng: -43.031741},
+{lat: -22.839751, lng: -43.069186},
+{lat: -22.866453, lng: -43.068975},
+{lat: -22.844315, lng: -43.064126},
+{lat: -22.835350, lng: -43.090922},
+{lat: -22.884925, lng: -42.988990},
+{lat: -22.813031, lng: -42.954575},
+{lat: -22.826194, lng: -43.070000},
+{lat: -22.847020, lng: -43.087851},
+{lat: -22.845919, lng: -42.954633},
+{lat: -22.779184, lng: -43.050252},
+{lat: -22.847751, lng: -42.998441},
+{lat: -22.833857, lng: -43.007631},
+{lat: -22.908790, lng: -42.981264},
+{lat: -22.854865, lng: -42.956723},
+{lat: -22.830325, lng: -43.004954},
+{lat: -22.827468, lng: -43.018079},
+{lat: -22.816713, lng: -43.044270},
+{lat: -22.806116, lng: -43.001613},
+{lat: -22.845927, lng: -43.089634},
+{lat: -22.793192, lng: -43.015625},
+{lat: -22.833957, lng: -43.050975},
+{lat: -22.774420, lng: -43.022875},
+{lat: -22.854355, lng: -43.028955},
+{lat: -22.795111, lng: -42.981118},
+{lat: -22.839063, lng: -43.046923},
+{lat: -22.792408, lng: -43.030418},
+{lat: -22.828228, lng: -43.016436},
+{lat: -22.830263, lng: -42.979255},
+{lat: -22.810135, lng: -42.946943},
+{lat: -22.882348, lng: -43.005471},
+{lat: -22.854751, lng: -43.097989},
+{lat: -22.803277, lng: -42.981808},
+{lat: -22.853132, lng: -43.069103},
+{lat: -22.812656, lng: -43.004586},
+{lat: -22.822488, lng: -43.041193},
+{lat: -22.857630, lng: -43.030263},
+{lat: -22.870472, lng: -43.047256},
+{lat: -22.828830, lng: -42.990622},
+{lat: -22.858659, lng: -42.945351},
+{lat: -22.806759, lng: -43.002693},
+{lat: -22.837429, lng: -43.003283},
+{lat: -22.836713, lng: -43.077867},
+{lat: -22.827062, lng: -43.086430},
+{lat: -22.801628, lng: -42.957635},
+{lat: -22.821603, lng: -42.989917},
+{lat: -22.828410, lng: -43.004600},
+{lat: -22.815531, lng: -43.059993},
+{lat: -22.827062, lng: -43.086430},
+{lat: -22.825787, lng: -42.975142},
+{lat: -22.764978, lng: -43.004633},
+{lat: -22.797453, lng: -42.997136},
+{lat: -22.861102, lng: -43.089648},
+{lat: -22.840662, lng: -43.009166},
+{lat: -22.874646, lng: -43.021696},
+{lat: -22.844040, lng: -43.084972},
+{lat: -22.817652, lng: -43.029296},
+{lat: -22.830355, lng: -43.085696},
+{lat: -22.875233, lng: -43.027815},
+{lat: -22.774420, lng: -43.022875},
+{lat: -22.868812, lng: -43.020188},
+{lat: -22.812105, lng: -42.996939},
+{lat: -22.845651, lng: -43.000661},
+{lat: -22.806619, lng: -43.024946},
+{lat: -22.805104, lng: -43.012244},
+{lat: -22.804172, lng: -42.969995},
+{lat: -22.847419, lng: -43.004828},
+{lat: -22.821375, lng: -43.079137},
+{lat: -22.839063, lng: -42.989797},
+{lat: -22.859878, lng: -42.942320},
+{lat: -22.809007, lng: -42.957267},
+{lat: -22.827818, lng: -43.080057},
+{lat: -22.812545, lng: -43.028164},
+{lat: -22.810407, lng: -43.023487},
+{lat: -22.782846, lng: -43.020839},
+{lat: -22.818887, lng: -43.051288},
+{lat: -22.827386, lng: -42.980780},
+{lat: -22.830608, lng: -42.986154},
+{lat: -22.842214, lng: -43.092622},
+{lat: -22.830608, lng: -42.986154},
+{lat: -22.813950, lng: -43.009935},
+{lat: -22.822119, lng: -43.051782},
+{lat: -22.775386, lng: -42.963996}
+]
+</script>
+<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+</script>
+
+
+
+<!-- Load -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJiCtN6cXazerZpvQTRglTwzxulP_rsG8&callback=initMap" async defer></script>
