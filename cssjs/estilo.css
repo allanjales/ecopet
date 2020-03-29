@@ -225,6 +225,7 @@ nav{
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
+	position: static;
 	}
 nav a{width: 100%;}
 }
