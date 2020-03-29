@@ -73,7 +73,7 @@ nav a:hover{
 	height: calc(100vh - 160px);
 	background-image: url(../imagens/banner.jpg);
 	background-size: cover;
-	background-position: bottom;
+	background-position: 65%;
 	}
 	
 main{
@@ -213,26 +213,28 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {-webkit-appe
 	}
 	
 @media (max-width: 1000px) {
-.meio{
-	width: auto;
-	margin-left: 20px;
-	margin-right: 20px;
-	}
+	.meio{
+		width: auto;
+		margin-left: 20px;
+		margin-right: 20px;
+		}
 }
 
 @media (max-width: 500px){
-nav{
-	display: flex;
-	justify-content: center;
-	flex-wrap: wrap;
-	position: static;
-	padding: 0;
-	}
-nav a{width: 100%;}
-.lado{
-	width: 100%;
-	}
-.lado + .lado{
-	margin-top: 6px;
-	}
+	nav{
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+		position: static;
+		padding: 0;
+		}
+	nav a{
+		width: 100%;
+		}
+	form .divisao .lado{
+		width: 100%;
+		}
+	form .divisao .lado + form .divisao .lado{
+		margin-top: 6px;
+		}
 }
