@@ -73,7 +73,7 @@ nav a:hover{
 	height: calc(100vh - 160px);
 	background-image: url(../imagens/banner.jpg);
 	background-size: cover;
-	background-position: 65%;
+	background-position: 66% bottom;
 	}
 	
 main{
@@ -234,7 +234,10 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {-webkit-appe
 	form .divisao .lado{
 		width: 100%;
 		}
-	form .divisao .lado + form .divisao .lado{
+	form .divisao .lado + .lado{
 		margin-top: 6px;
 		}
+	form .divisao .lado textarea{
+		height: 128px;
+	}
 }
