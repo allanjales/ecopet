@@ -228,4 +228,10 @@ nav{
 	position: static;
 	}
 nav a{width: 100%;}
+.lado{
+	width: 100%;
+	}
+.lado + .lado{
+	margin-top: 6px;
+	}
 }
